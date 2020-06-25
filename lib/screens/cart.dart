@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shoesapp/models/shoes_model.dart';
+import 'package:shoesapp/models/ListShoes.dart';
+import 'package:shoesapp/models/Cart.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -8,6 +11,8 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   int nbItems = 0;
   double totalCart = 0.00;
+  List<Shoes> shoes = ListShoes().listShoesPuma;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +95,7 @@ class _CartScreenState extends State<CartScreen> {
       height: 530,
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: shoes.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.fromLTRB(1, 0, 1, 10),
@@ -98,14 +103,14 @@ class _CartScreenState extends State<CartScreen> {
                 height: 150,
                 width: 400,
                 color: Theme.of(context).primaryColor,
-                child: _buildRowBody()),
+                child: _buildRowBody(shoes[index])),
           );
         },
       ),
     );
   }
 
-  Widget _buildRowBody() {
+  Widget _buildRowBody(Shoes shoe) {
     return Stack(
       children: <Widget>[
         Positioned(
@@ -114,7 +119,7 @@ class _CartScreenState extends State<CartScreen> {
           left: 10,
           bottom: 5,
           child: Card(
-            color: Colors.grey.shade300,
+            color: Color(0xFFdfe3ea),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
             ),
@@ -125,7 +130,7 @@ class _CartScreenState extends State<CartScreen> {
           right: 0,
           left: -220,
           child: Image.asset(
-            'images/puma/puma1.png',
+            'images/${shoe.brandName.toLowerCase()}/${shoe.imageName}.png',
             height: 140,
             width: 140,
           ),
