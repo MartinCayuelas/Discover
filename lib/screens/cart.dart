@@ -96,6 +96,7 @@ class _CartScreenState extends State<CartScreen> {
             padding: const EdgeInsets.fromLTRB(1, 0, 1, 10),
             child: Container(
                 height: 150,
+                width: 400,
                 color: Theme.of(context).primaryColor,
                 child: _buildRowBody()),
           );
@@ -105,31 +106,29 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Widget _buildRowBody() {
-    return Row(
+    return Stack(
       children: <Widget>[
-        Stack(
-          children: <Widget>[
-            Card(
-              child: SizedBox(
-                width: 110,
-                height: 110,
-              ),
-              color: Colors.grey.shade300,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25),
-              ),
+        Positioned(
+          top: 25,
+          right: 270,
+          left: 10,
+          bottom: 5,
+          child: Card(
+            color: Colors.grey.shade300,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
             ),
-            Positioned(
-              top: 10,
-              right: -35,
-              left: 0,
-              child: Image.asset(
-                'images/puma/puma1.png',
-                height: 150,
-                width: 150,
-              ),
-            ),
-          ],
+          ),
+        ),
+        Positioned(
+          top: 0,
+          right: 0,
+          left: -220,
+          child: Image.asset(
+            'images/puma/puma1.png',
+            height: 140,
+            width: 140,
+          ),
         ),
       ],
     );
