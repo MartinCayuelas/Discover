@@ -240,7 +240,7 @@ class _CartScreenState extends State<CartScreen> {
                   '$totalCart €',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 17.0,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'JostSB',
                   ),
