@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoesapp/models/shoes_model.dart';
 import 'package:shoesapp/models/ListShoes.dart';
-import 'package:shoesapp/models/Cart.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -9,12 +8,23 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  List<Shoes> shoes = [];
   int nbItems = 0;
   double totalCart = 0.00;
-  List<Shoes> shoes = ListShoes().listShoesPuma;
+
+  void init() {
+    shoes = ListShoes().listShoesPuma;
+    nbItems = shoes.length;
+    totalCart = calculateTotal(shoes);
+  }
+
+  double calculateTotal(List<Shoes> shoes) {
+    return shoes.fold(0, (t, e) => t + e.price);
+  }
 
   @override
   Widget build(BuildContext context) {
+    init();
     return Scaffold(
       appBar: _buildAppBar(),
       body: Column(
@@ -133,6 +143,73 @@ class _CartScreenState extends State<CartScreen> {
             'images/${shoe.brandName.toLowerCase()}/${shoe.imageName}.png',
             height: 140,
             width: 140,
+          ),
+        ),
+        Positioned(
+          top: 25,
+          right: 0,
+          left: 185,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                shoe.name,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'JostR',
+                ),
+              ),
+              Text(
+                '${shoe.price} €',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'JostSB',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                child: Row(
+                  children: <Widget>[
+                    Material(
+                      color: Color(0xFFF5F5F5),
+                      child: InkWell(
+                        splashColor: Colors.grey,
+                        onTap: () {},
+                        child: Container(
+                          width: 50,
+                          height: 30,
+                          child: SizedBox(
+                            child: Icon(Icons.remove),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      child: Text('1'),
+                    ),
+                    Material(
+                      color: Color(0xFFF5F5F5),
+                      child: InkWell(
+                        splashColor: Colors.grey,
+                        onTap: () {},
+                        child: Container(
+                          width: 50,
+                          height: 30,
+                          child: SizedBox(
+                            child: Icon(Icons.add),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ],
