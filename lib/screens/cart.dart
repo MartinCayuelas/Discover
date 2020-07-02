@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoesapp/models/Cart.dart';
 import 'package:shoesapp/models/shoes_model.dart';
 import 'package:shoesapp/models/ListShoes.dart';
 
@@ -11,20 +12,44 @@ class _CartScreenState extends State<CartScreen> {
   List<Shoes> shoes = [];
   int nbItems = 0;
   double totalCart = 0.00;
-
-  void init() {
+  Cart myCart;
+  @override
+  void initState() {
+    super.initState();
     shoes = ListShoes().listShoesPuma;
     nbItems = shoes.length;
-    totalCart = calculateTotal(shoes);
+    myCart = new Cart(listShoes: shoes);
+    totalCart = myCart.calculateTotal();
   }
 
-  double calculateTotal(List<Shoes> shoes) {
-    return shoes.fold(0, (t, e) => t + e.price);
+  void addItem(Shoes s) {
+    setState(() {
+      myCart.addItemInCart(s);
+      totalCart = myCart.calculateTotal();
+      nbItems = nbItems + 1;
+    });
+  }
+
+  void removeItem(Shoes s) {
+    setState(() {
+      myCart.removeItemFromCart(s);
+      totalCart = myCart.calculateTotal();
+      nbItems = nbItems - 1;
+    });
+  }
+
+  int calculateTotalShoe(Shoes s) {
+    return myCart.listShoes.where((element) => element.name == s.name).length;
+  }
+
+  List<Shoes> getUniqueShoes() {
+    return [
+      ...{...myCart.listShoes}
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    init();
     return Scaffold(
       appBar: _buildAppBar(),
       body: Column(
@@ -105,7 +130,7 @@ class _CartScreenState extends State<CartScreen> {
       height: 530,
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: shoes.length,
+        itemCount: getUniqueShoes().length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.fromLTRB(1, 0, 1, 10),
@@ -178,7 +203,11 @@ class _CartScreenState extends State<CartScreen> {
                       color: Color(0xFFF5F5F5),
                       child: InkWell(
                         splashColor: Colors.grey,
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            removeItem(shoe);
+                          });
+                        },
                         child: Container(
                           width: 50,
                           height: 30,
@@ -190,13 +219,17 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      child: Text('1'),
+                      child: Text(calculateTotalShoe(shoe).toString()),
                     ),
                     Material(
                       color: Color(0xFFF5F5F5),
                       child: InkWell(
                         splashColor: Colors.grey,
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            addItem(shoe);
+                          });
+                        },
                         child: Container(
                           width: 50,
                           height: 30,
