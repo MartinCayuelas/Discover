@@ -13,6 +13,7 @@ class _CartScreenState extends State<CartScreen> {
   int nbItems = 0;
   double totalCart = 0.00;
   Cart myCart;
+
   @override
   void initState() {
     super.initState();
@@ -285,11 +286,13 @@ class _CartScreenState extends State<CartScreen> {
         SizedBox(
           width: 345.0,
           height: 45.0,
-          child: new RaisedButton(
-            color: Theme.of(context).accentColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-                side: BorderSide(color: Theme.of(context).accentColor)),
+          child: new ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).accentColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  side: BorderSide(color: Theme.of(context).accentColor)),
+            ),
             child: new Text(
               'Next',
               style: TextStyle(

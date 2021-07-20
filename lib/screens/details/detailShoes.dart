@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoesapp/customs/PainterCircle.dart';
 import 'package:shoesapp/models/ListSizesShoes.dart';
 import 'package:shoesapp/models/shoes_model.dart';
+import 'package:shoesapp/screens/details/card.dart';
 
 class DetailShoes extends StatefulWidget {
   @override
@@ -108,7 +109,7 @@ class _DetailShoesState extends State<DetailShoes> {
               ),
             ),
             Image.asset(
-              'images/${shoes.brandName.toLowerCase()}/${shoes.imageName}15.png',
+              'images/${shoes.brandName.toLowerCase()}/${shoes.imageName}.png',
               height: 320,
               width: 320,
             ),
@@ -120,34 +121,9 @@ class _DetailShoesState extends State<DetailShoes> {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.all(8),
             children: <Widget>[
-              Card(
-                color: Color(0xFFf5f6fa),
-                elevation: 0.0,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset(
-                      'images/${shoes.brandName.toLowerCase()}/${shoes.imageName}15.png',
-                      height: 110,
-                      width: 110,
-                    ),
-                  ),
-                ),
-              ),
-              Card(
-                color: Color(0xFFf5f6fa),
-                elevation: 0.0,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset(
-                      'images/${shoes.brandName.toLowerCase()}/${shoes.imageName}.png',
-                      height: 110,
-                      width: 110,
-                    ),
-                  ),
-                ),
-              ),
+              CardCarousel(
+                  '${shoes.brandName.toLowerCase()}/${shoes.imageName}'),
+              CardCarousel('shoe-placeholder'),
             ],
           ),
         ),
@@ -289,7 +265,7 @@ class _DetailShoesState extends State<DetailShoes> {
                           color: _selectedSize == sizes[index]
                               ? Colors.black87
                               : Colors.white,
-                          child: FlatButton(
+                          child: TextButton(
                             child: Text(
                               sizes[index],
                               style: TextStyle(
@@ -311,8 +287,7 @@ class _DetailShoesState extends State<DetailShoes> {
         SizedBox(
           width: 345.0,
           height: 45.0,
-          child: new RaisedButton(
-            color: Theme.of(context).accentColor,
+          child: new ElevatedButton(
             child: new Text(
               'ADD TO BAG',
               style: TextStyle(
@@ -321,6 +296,9 @@ class _DetailShoesState extends State<DetailShoes> {
                   fontSize: 16),
             ),
             onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).accentColor,
+            ),
           ),
         ),
       ],
