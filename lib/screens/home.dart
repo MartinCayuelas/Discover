@@ -158,23 +158,23 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Tab2'),
+            label:'home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
-            title: Text('Tab2'),
+            label: 'favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.room),
-            title: Text('Tab3'),
+            label:'map',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
-            title: Text('Tab3'),
+            label: 'cart',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            title: Text('Tab3'),
+            label:'profile',
           ),
         ]);
   }
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         : Container(),
                     Center(
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           brand,
                           style: currentIndexShoes == brand

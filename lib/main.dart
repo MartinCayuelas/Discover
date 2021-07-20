@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoesapp/screens/cart.dart';
-import 'package:shoesapp/screens/detailShoes.dart';
+import 'package:shoesapp/screens/details/detailShoes.dart';
 import 'package:shoesapp/screens/home.dart';
 
 void main() {

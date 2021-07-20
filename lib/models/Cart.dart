@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:shoesapp/models/shoes_model.dart';
 
 class Cart {
