@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoesapp/screens/cart.dart';
 import 'package:shoesapp/screens/details/detailShoes.dart';
 import 'package:shoesapp/screens/home.dart';
+import 'package:shoesapp/screens/user.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/detail': (context) => DetailShoes(),
         '/cart': (context) => CartScreen(),
+        '/user': (context) => UserScreen(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

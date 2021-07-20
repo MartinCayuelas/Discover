@@ -16,4 +16,8 @@ class Cart {
   double calculateTotal() {
     return this.listShoes.fold(0, (t, e) => t + e.price);
   }
+
+  int getNumberOfItems() {
+    return this.listShoes.length;
+  }
 }
