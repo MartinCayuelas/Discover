@@ -12,6 +12,7 @@ class Information extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('My Details',
               style: TextStyle(
@@ -22,8 +23,8 @@ class Information extends StatelessWidget {
               )),
           Text('M. ${this.firstName} ${this.lastName}',
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.0,
+                color: Theme.of(context).accentColor,
+                fontSize: 15.0,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'JostSB',
               )),

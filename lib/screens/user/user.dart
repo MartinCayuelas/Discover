@@ -85,7 +85,8 @@ class _UserScreenState extends State<UserScreen> {
       child: Column(children: <Widget>[
         Information(this.user.firstName, this.user.lastName),
         Orders(this.user.listOrders),
-      ]),
+      ],
+      crossAxisAlignment: CrossAxisAlignment.start,),
       padding: const EdgeInsets.all(15),
     );
   }
