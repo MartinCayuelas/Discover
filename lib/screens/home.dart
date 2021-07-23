@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Shoes> newShoes = ListShoes().newShoesPuma;
 
   String currentIndexShoes = 'Puma';
+
   void _changeListShoes(String brandName) {
     setState(() {
       switch (brandName) {
@@ -146,19 +147,27 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             tabIndex = index;
 
-            if (index == 3) {
-              Navigator.pushNamed(
-                context,
-                '/cart',
-              );
-              tabIndex = 0;
+            switch (index) {
+              case 3:
+                Navigator.pushNamed(
+                  context,
+                  '/cart',
+                );
+                break;
+              case 4:
+                Navigator.pushNamed(
+                  context,
+                  '/user',
+                );
+                break;
             }
+            tabIndex = 0;
           });
         },
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label:'home',
+            label: 'home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
@@ -166,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.room),
-            label:'map',
+            label: 'map',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
@@ -174,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            label:'profile',
+            label: 'profile',
           ),
         ]);
   }

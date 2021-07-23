@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoesapp/components/divider.dart';
 import 'package:shoesapp/models/Cart.dart';
 import 'package:shoesapp/models/shoes_model.dart';
 import 'package:shoesapp/models/ListShoes.dart';
@@ -10,32 +11,24 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   List<Shoes> shoes = [];
-  int nbItems = 0;
-  double totalCart = 0.00;
   Cart myCart;
 
   @override
   void initState() {
     super.initState();
     shoes = ListShoes().listShoesPuma;
-    nbItems = shoes.length;
     myCart = new Cart(listShoes: shoes);
-    totalCart = myCart.calculateTotal();
   }
 
   void addItem(Shoes s) {
     setState(() {
       myCart.addItemInCart(s);
-      totalCart = myCart.calculateTotal();
-      nbItems = nbItems + 1;
     });
   }
 
   void removeItem(Shoes s) {
     setState(() {
       myCart.removeItemFromCart(s);
-      totalCart = myCart.calculateTotal();
-      nbItems = nbItems - 1;
     });
   }
 
@@ -56,17 +49,9 @@ class _CartScreenState extends State<CartScreen> {
       body: Column(
         children: <Widget>[
           _buildTopBody(),
-          Divider(
-            height: 1,
-            color: Colors.grey.shade300,
-            thickness: 1,
-          ),
+          DividerWidget(),
           _buildListBody(),
-          Divider(
-            height: 1,
-            color: Colors.grey.shade300,
-            thickness: 1,
-          ),
+          DividerWidget(),
           _buildBottomBody(),
         ],
       ),
@@ -112,7 +97,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             Text(
-              'Total $nbItems items',
+              'Total ${myCart.getNumberOfItems()} items',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 17.0,
@@ -271,7 +256,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
                 Text(
-                  '$totalCart €',
+                  '${myCart.calculateTotal()} €',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25.0,
