@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoesapp/components/divider.dart';
 import 'package:shoesapp/models/Cart.dart';
 import 'package:shoesapp/models/shoes_model.dart';
 import 'package:shoesapp/models/ListShoes.dart';
@@ -48,17 +49,9 @@ class _CartScreenState extends State<CartScreen> {
       body: Column(
         children: <Widget>[
           _buildTopBody(),
-          Divider(
-            height: 1,
-            color: Colors.grey.shade300,
-            thickness: 1,
-          ),
+          DividerWidget(),
           _buildListBody(),
-          Divider(
-            height: 1,
-            color: Colors.grey.shade300,
-            thickness: 1,
-          ),
+          DividerWidget(),
           _buildBottomBody(),
         ],
       ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shoesapp/components/divider.dart';
 import 'package:shoesapp/models/ListOrders.dart';
 import 'package:shoesapp/models/User.dart';
+import 'package:shoesapp/screens/user/information.dart';
+import 'package:shoesapp/screens/user/orders.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -28,11 +31,8 @@ class _UserScreenState extends State<UserScreen> {
       body: Column(
         children: <Widget>[
           _buildTopBody(),
-          Divider(
-            height: 1,
-            color: Colors.grey.shade300,
-            thickness: 1,
-          ),
+          DividerWidget(),
+          _buildBody(),
         ],
       ),
     );
@@ -77,6 +77,16 @@ class _UserScreenState extends State<UserScreen> {
                   ),
                 ),
               ])),
+    );
+  }
+
+  Widget _buildBody() {
+    return Padding(
+      child: Column(children: <Widget>[
+        Information(this.user.firstName, this.user.lastName),
+        Orders(this.user.listOrders),
+      ]),
+      padding: const EdgeInsets.all(15),
     );
   }
 }

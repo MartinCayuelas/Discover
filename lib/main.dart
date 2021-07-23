@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoesapp/screens/cart.dart';
 import 'package:shoesapp/screens/details/detailShoes.dart';
 import 'package:shoesapp/screens/home.dart';
-import 'package:shoesapp/screens/user.dart';
+import 'package:shoesapp/screens/user/user.dart';
 
 void main() {
   runApp(MyApp());
